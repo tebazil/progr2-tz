@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Дома{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Дома</h1>
+    <h4>Всего домов : {{ houses|length }}</h4>
+    <ul>
+        <table border="1">
+            <tr><th>Улица</th><th>Дом</th><th>Квартиры</th><th>Всего квартир</th><th>Добавить</th></tr>
+
+    {% for house in houses %}
+        <tr>
+            <td>{{ house.streetName }}</td>
+            <td>{{ house.number }}</td>
+            <td>{% for flat in house.flats %} {{ flat.number }}{% if not loop.last %}, {% endif %} {% endfor %}</td>
+            <td>{{  house.flats | length }}</td>
+            <td><a href="/house/{{ house.id }}/flat-add">[+ кв]</a></td>
+        </tr>
+
+
+    {% endfor %}
+        </table>
+    </ul>
+    <a href="/house/add">Добавить дом</a>
+</div>
+{% endblock %}

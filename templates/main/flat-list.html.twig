@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Квартиры{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Квартиры</h1>
+    <h4>Всего квартир : {{ flats|length }}</h4>
+    <ul>
+    {% for flat in flats %}
+        <li>№{{ flat.number }} </li>
+    {% endfor %}
+    </ul>
+    <a href="/house/{{ houseId }}/flat-add">Добавить квартиру</a><br>
+    <a href="/house/list">К списку домов</a>
+</div>
+{% endblock %}
